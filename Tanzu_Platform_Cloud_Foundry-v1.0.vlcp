@@ -1,0 +1,1076 @@
+{
+  "name": "VMware Tanzu Platform",
+  "namespace": "com.vmware.tanzu.platform",
+  "contentPackId": "com.vmware.tanzu.platform",
+  "framework": "#9c4",
+  "version": "2.4",
+  "author": "VMware by Broadcom",
+  "url": "https://tanzu.vmware.com",
+  "contentVersion": "1.1",
+  "info": "<h3>VMware Tanzu Platform Content Pack</h3><p>Dashboards, extracted fields, and alerts for monitoring VMware Tanzu Platform (formerly Pivotal Cloud Foundry) deployments with VCF Operations for Logs.</p><h4>Components Covered:</h4><ul><li><b>Gorouter</b> - HTTP routing layer with request metrics</li><li><b>Diego</b> - Container orchestration (Rep, BBS, Auctioneer)</li><li><b>Cloud Controller</b> - API layer with CEF audit logging</li><li><b>UAA</b> - Authentication and authorization audit events</li><li><b>Garden</b> - Container runtime</li><li><b>Loggregator</b> - Log transport pipeline</li><li><b>Application Logs</b> - App stdout/stderr, staging, SSH</li></ul>",
+  "instructions": "<h3>Setup Instructions</h3><ol><li>Configure your VMware Tanzu Platform deployment to forward syslog to this VCF Operations for Logs instance.</li><li>In Ops Manager: <b>TAS tile &gt; System Logging</b> - set syslog drain address (UDP 514 or TCP 1514 for TLS).</li><li>For component logs, configure <code>syslog-release</code> in your BOSH deployment.</li><li>For app logs, configure aggregate syslog drain or per-app syslog drain service.</li></ol><h4>Expected Syslog Sources:</h4><ul><li>Component logs via syslog-release (RFC 5424 with instance@47450)</li><li>Application logs via Loggregator (RFC 5424 with tags@47450)</li></ul>",
+  "upgradeInstructions": "",
+  "icon": "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",
+  "extractedFields": [
+    {
+      "displayName": "tpcf_bosh_dep",
+      "preContext": "deployment=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7mrsxa000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"deployment=\"}",
+      "info": "BOSH deployment name"
+    },
+    {
+      "displayName": "tpcf_bosh_az",
+      "preContext": "az=\"",
+      "postContext": "\" id",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7mf5a0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"instance@47450\"}",
+      "info": "BOSH availability zone"
+    },
+    {
+      "displayName": "tpcf_bosh_director",
+      "preContext": "director=\"",
+      "postContext": "\" deployment",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7mruxezldorxxe000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"instance@47450\"}",
+      "info": "BOSH director name"
+    },
+    {
+      "displayName": "tpcf_bosh_group",
+      "preContext": "group=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7m5zg65lq",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"instance@47450\"}",
+      "info": "BOSH instance group (e.g., diego_cell, router)"
+    },
+    {
+      "displayName": "tpcf_bosh_id",
+      "preContext": "id=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7nfsa0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"instance@47450\"}",
+      "info": "BOSH instance UUID"
+    },
+    {
+      "displayName": "tpcf_job_id",
+      "preContext": "\\[instance@",
+      "postContext": " director",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7njxwex3jmq000000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"instance@\"}",
+      "info": "BOSH instance structured data identifier"
+    },
+    {
+      "displayName": "tpcf_product",
+      "preContext": "product=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7obzg6zdvmn2a0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"product=\"}",
+      "info": "Tanzu Platform product identifier"
+    },
+    {
+      "displayName": "tpcf_env_id",
+      "preContext": "environment=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mvxhmx3jmq000000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"environment=\"}",
+      "info": "Cloud Foundry environment/foundation ID"
+    },
+    {
+      "displayName": "tpcf_org_name",
+      "preContext": "organization_name=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7n5zgox3omfwwk000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"organization_name=\"}",
+      "info": "Cloud Foundry organization name"
+    },
+    {
+      "displayName": "tpcf_space_name",
+      "preContext": "space_name=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onygcy3fl5xgc3lf",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"space_name=\"}",
+      "info": "Cloud Foundry space name"
+    },
+    {
+      "displayName": "tpcf_app_name",
+      "preContext": "app_name=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3omfwwk000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"app_name=\"}",
+      "info": "Cloud Foundry application name"
+    },
+    {
+      "displayName": "tpcf_rtr_host",
+      "preContext": "\\]\\s",
+      "postContext": "\\s-\\s\\[",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3in5zxi000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "HTTP request host from Gorouter access log"
+    },
+    {
+      "displayName": "tpcf_rtr_method",
+      "preContext": "\"",
+      "postContext": "\\s/",
+      "regexValue": "[A-Z]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3nmv2gq33e",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "HTTP method from Gorouter access log"
+    },
+    {
+      "displayName": "tpcf_rtr_path",
+      "preContext": "\"[A-Z]+\\s",
+      "postContext": "\\sHTTP/",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3qmf2gq000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "HTTP request path from Gorouter access log"
+    },
+    {
+      "displayName": "tpcf_rtr_status",
+      "preContext": "HTTP/[12]\\.[01]\"\\s",
+      "postContext": "\\s\\d+\\s",
+      "regexValue": "\\d{3}",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3torqxi5lt",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "HTTP response status code from Gorouter"
+    },
+    {
+      "displayName": "tpcf_rtr_response_time",
+      "preContext": "response_time:",
+      "postContext": "\\s",
+      "regexValue": "[\\d\\.]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3smvzxa33oonsv65djnvsq0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Total response time in seconds from Gorouter"
+    },
+    {
+      "displayName": "tpcf_rtr_gorouter_time",
+      "preContext": "gorouter_time:",
+      "postContext": "\\s",
+      "regexValue": "[\\d\\.]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3hn5zg65lumvzf65djnvsq0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Time spent in Gorouter processing"
+    },
+    {
+      "displayName": "tpcf_rtr_backend_time",
+      "preContext": "backend_time:",
+      "postContext": "\\s",
+      "regexValue": "[\\d\\.]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3cmfrwwzlomrpxi2lnmu000000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Backend response time from Gorouter"
+    },
+    {
+      "displayName": "tpcf_rtr_app_id",
+      "preContext": "app_id:",
+      "postContext": "\\s",
+      "regexValue": "[a-f0-9\\-]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3bobyf62le",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Application GUID from Gorouter access log"
+    },
+    {
+      "displayName": "tpcf_rtr_app_index",
+      "preContext": "app_index:",
+      "postContext": "\\s",
+      "regexValue": "\\d+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3bobyf62lomrsxq000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Application instance index from Gorouter"
+    },
+    {
+      "displayName": "tpcf_rtr_error",
+      "preContext": "x_cf_routererror:",
+      "postContext": "(\\s|$)",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3fojzg64q0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Router error classification (e.g., no_endpoints, endpoint_failure)"
+    },
+    {
+      "displayName": "tpcf_rtr_vcap_request_id",
+      "preContext": "vcap_request_id:",
+      "postContext": "\\s",
+      "regexValue": "[a-f0-9\\-]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3wmnqxax3smvyxkzltorpwsza0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "VCAP request correlation ID"
+    },
+    {
+      "displayName": "tpcf_rtr_x_forwarded_for",
+      "preContext": "x_forwarded_for:\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3yl5tg64txmfzgizlel5tg64q0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "X-Forwarded-For header from Gorouter"
+    },
+    {
+      "displayName": "tpcf_rtr_bytes",
+      "preContext": "\"\\s\\d{3}\\s\\d+\\s",
+      "postContext": "\\s\"",
+      "regexValue": "\\d+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3cpf2gk4y0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"RTR\"}",
+      "info": "Response bytes sent"
+    },
+    {
+      "displayName": "tpcf_origin",
+      "preContext": "origin=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7n5zgsz3jny000000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"origin=\"}",
+      "info": "CF component origin (cloud_controller, gorouter, rep, bbs, uaa, etc.)"
+    },
+    {
+      "displayName": "tpcf_job",
+      "preContext": "job=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7njxwe000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"job=\"}",
+      "info": "BOSH job name from Loggregator tags (compute, control, router, etc.)"
+    },
+    {
+      "displayName": "tpcf_ip",
+      "preContext": "ip=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7nfya0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"ip=\"}",
+      "info": "Instance IP address from Loggregator tags"
+    },
+    {
+      "displayName": "tpcf_process_type",
+      "preContext": "process_type=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7obzg6y3fonzv65dzobsq0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"process_type=\"}",
+      "info": "Process type from Loggregator tags (web, worker, etc.)"
+    },
+    {
+      "displayName": "tpcf_source_id",
+      "preContext": "source_id=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onxxk4tdmvpwsza0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"source_id=\"}",
+      "info": "Source GUID from Loggregator tags"
+    },
+    {
+      "displayName": "tpcf_system_domain",
+      "preContext": "system_domain=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7on4xg5dfnvpwi33nmfuw4000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"system_domain=\"}",
+      "info": "TAS system domain from Loggregator tags"
+    },
+    {
+      "displayName": "tpcf_diego_source",
+      "preContext": "\"source\":\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mruwkz3pl5zw65lsmnsq0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"origin=\"}",
+      "info": "Diego component source name"
+    },
+    {
+      "displayName": "tpcf_diego_message",
+      "preContext": "\"message\":\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mruwkz3pl5wwk43tmftwk000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"origin=\"}",
+      "info": "Diego log message"
+    },
+    {
+      "displayName": "tpcf_diego_log_level",
+      "preContext": "\"log_level\":",
+      "postContext": "[,}]",
+      "regexValue": "\\d",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mruwkz3pl5wg6z27nrsxmzlm",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"origin=\"}",
+      "info": "Diego log level (0=DEBUG, 1=INFO, 2=ERROR, 3=FATAL)"
+    },
+    {
+      "displayName": "tpcf_cc_sig_id",
+      "preContext": "cloud_controller_ng\\|[^|]*\\|",
+      "postContext": "\\|",
+      "regexValue": "[^|]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv643jm5pwsza0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Cloud Controller CEF signature ID"
+    },
+    {
+      "displayName": "tpcf_cc_event",
+      "preContext": "cloud_controller_ng\\|[^|]*\\|[^|]*\\|",
+      "postContext": "\\|",
+      "regexValue": "[^|]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv6zlwmvxhi000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Cloud Controller audit event name"
+    },
+    {
+      "displayName": "tpcf_cc_user",
+      "preContext": "suser=",
+      "postContext": "\\s",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv65ltmvza0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Cloud Controller authenticated user"
+    },
+    {
+      "displayName": "tpcf_cc_request",
+      "preContext": "request=",
+      "postContext": "\\s",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv64tfof2wk43u",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Cloud Controller API request path"
+    },
+    {
+      "displayName": "tpcf_cc_status",
+      "preContext": "cs4=",
+      "postContext": "\\s",
+      "regexValue": "\\d{3}",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv643umf2hk4y0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Cloud Controller HTTP status code"
+    },
+    {
+      "displayName": "tpcf_cc_result",
+      "preContext": "cs3=",
+      "postContext": "\\s",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv64tfon2wy5a0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Cloud Controller result (success/clientError/serverError)"
+    },
+    {
+      "displayName": "tpcf_cc_auth",
+      "preContext": "cs1=",
+      "postContext": "\\s",
+      "regexValue": "[^\\s]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv6ylvorua0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Authentication mechanism used"
+    },
+    {
+      "displayName": "tpcf_cc_src_ip",
+      "preContext": "src=",
+      "postContext": "\\s",
+      "regexValue": "[\\d\\.]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mnrv643smnpws4a0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"cloud_controller\"}",
+      "info": "Client source IP for CC API request"
+    },
+    {
+      "displayName": "tpcf_uaa_event_type",
+      "preContext": "Audit:\\s",
+      "postContext": "\\s\\(",
+      "regexValue": "[A-Za-z]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7ovqwcx3fozsw45c7or4xazi0",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"uaa\"}",
+      "info": "UAA audit event type (e.g., UserAuthenticationSuccess)"
+    },
+    {
+      "displayName": "tpcf_uaa_principal",
+      "preContext": "principal=",
+      "postContext": ",",
+      "regexValue": "[^,]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7ovqwcx3qojuw4y3jobqwy000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"uaa\"}",
+      "info": "UAA principal ID"
+    },
+    {
+      "displayName": "tpcf_uaa_origin",
+      "preContext": "origin=\\[",
+      "postContext": "\\]",
+      "regexValue": "[^\\]]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7ovqwcx3pojuwo2lo",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"uaa\"}",
+      "info": "UAA event origin details"
+    },
+    {
+      "displayName": "tpcf_uaa_zone",
+      "preContext": "identityZoneId=\\[",
+      "postContext": "\\]",
+      "regexValue": "[^\\]]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7ovqwcx32n5xgk000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"uaa\"}",
+      "info": "UAA identity zone"
+    },
+    {
+      "displayName": "tpcf_source_type",
+      "preContext": "source_type=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onxxk4tdmvpxi6lqmu000000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"tags@47450\"}",
+      "info": "Loggregator source type (RTR, APP/PROC/WEB, CELL, API, STG, SSH, LGR)"
+    },
+    {
+      "displayName": "tpcf_envelope_type",
+      "preContext": "__v1_type=\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mvxhmzlmn5ygkx3upfygk000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"tags@47450\"}",
+      "info": "Loggregator envelope type (LogMessage, CounterEvent, ValueMetric)"
+    },
+    {
+      "displayName": "tpcf_app_source",
+      "preContext": "\\[",
+      "postContext": "/\\d+\\]",
+      "regexValue": "APP/PROC/[A-Z]+|APP|STG|CELL|SSH|LGR|RTR|API",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3tn52xey3f",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"APP/\"}",
+      "info": "Application log source type from PROCID"
+    },
+    {
+      "displayName": "tpcf_app_instance",
+      "preContext": "\\[(?:APP|RTR|CELL|API|STG|SSH|LGR|APP/PROC/[A-Z]+)/",
+      "postContext": "\\]",
+      "regexValue": "\\d+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3jnzzxiylomnsq0000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"APP/\"}",
+      "info": "Application instance index from PROCID"
+    },
+    {
+      "displayName": "tpcf_severity",
+      "preContext": "(\\s|log_level\":\"|\\[)",
+      "postContext": "(\\s+(:|-{1,3})|\",\"source|])",
+      "regexValue": "TRACE|DEBUG|INFO|WARN|ERROR|FATAL|UNKNOWN",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onsxmzlsnf2hs000",
+      "constraints": "{\"filters\": [], \"searchTerms\": \"instance@47450\"}",
+      "info": "Event severity level"
+    },
+    {
+      "displayName": "tpcf_garden_handle",
+      "preContext": "\"handle\":\"",
+      "postContext": "\"",
+      "regexValue": "[^\"]+",
+      "internalName": "ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7m5qxezdfnzpwqylomrwgk000",
+      "constraints": "{\"filters\": [{\"internalName\": \"appname\", \"displayName\": \"appname\", \"operator\": \"CONTAINS\", \"value\": \"garden\", \"fieldType\": \"STRING\", \"isExtracted\": false, \"hidden\": false}], \"searchTerms\": \"\"}",
+      "info": "Garden container handle"
+    }
+  ],
+  "queries": [],
+  "alerts": [
+    {
+      "name": "TPCF - Application Crash Detected",
+      "info": "<span>An application instance has crashed. May indicate an app bug, resource exhaustion, or platform issue.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"crashed|CRASHED|exit_status.*[1-9]\"}, {\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"CELL|rep\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 0.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - Gorouter No Endpoints Available",
+      "info": "<span>Gorouter returning 'no_endpoints' errors - no healthy backend instances for one or more routes.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"x_cf_routererror:no_endpoints\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 0.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - High 5xx Error Rate",
+      "info": "<span>Elevated HTTP 5xx errors from Gorouter indicating server-side failures.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}, {\"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3torqxi5lt\", \"operator\": \"MATCH\", \"value\": \"5\\\\d{2}\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 10.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - UAA Authentication Failures Spike",
+      "info": "<span>Elevated authentication failures in UAA - may indicate brute-force attack or misconfigured client.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"AuthenticationFailure\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 20.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - Diego Cell Errors",
+      "info": "<span>Diego cell (rep) reporting errors - may indicate cell health issues or resource exhaustion.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"rep\\\"\"}, {\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"ERROR|error|failed\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 5.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - Cloud Controller Server Errors",
+      "info": "<span>Cloud Controller API returning server errors.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}, {\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"ERROR|error|serverError|failed\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 0.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - Loggregator Dropping Messages",
+      "info": "<span>Loggregator is dropping log messages - logging pipeline may be overwhelmed.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"Dropped.*log messages\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 0.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    },
+    {
+      "name": "TPCF - Slow Gorouter Response Time",
+      "info": "<span>Gorouter experiencing slow response times (>5s) - may indicate backend performance issues.</span>",
+      "alertType": "RATE_BASED",
+      "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}, {\"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3smvzxa33oonsv65djnvsq0000\", \"operator\": \"GREATER_THAN\", \"value\": \"5\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+      "messageQuery": "",
+      "hitCount": 5.0,
+      "hitOperator": "GREATER_THAN",
+      "searchPeriod": 300000,
+      "searchInterval": 300000
+    }
+  ],
+  "dashboardSections": [
+    {
+      "views": [
+        {
+          "name": "Overview",
+          "constraints": [],
+          "rows": [
+            {
+              "widgets": [
+                {
+                  "name": "Total Log Messages Over Time",
+                  "info": "<span>Total log event volume from Tanzu Platform components</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345723, \"endTimeMillis\": 1774395745723, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Events by BOSH Job",
+                  "info": "<span>Log message distribution grouped by BOSH instance group</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345723, \"endTimeMillis\": 1774395745723, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"instance@47450\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_bosh_group\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7m5zg65lq\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Events by Product",
+                  "info": "<span>Log volume grouped by Tanzu product</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345723, \"endTimeMillis\": 1774395745723, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_product\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7obzg6zdvmn2a0000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Error and Fatal Events",
+                  "info": "<span>Error and Fatal severity events across all components</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345723, \"endTimeMillis\": 1774395745723, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"ERROR|FATAL|error|fatal|log_level\\\":[23]\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Events by Availability Zone",
+                  "info": "<span>Log distribution across BOSH availability zones</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"instance@47450\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_bosh_az\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7mf5a0000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Events by Environment",
+                  "info": "<span>Log volume per Cloud Foundry environment/foundation</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_env_id\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mvxhmx3jmq000000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Gorouter",
+          "constraints": [],
+          "rows": [
+            {
+              "widgets": [
+                {
+                  "name": "Total Gorouter Requests Over Time",
+                  "info": "<span>HTTP request volume through the Gorouter</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"RTR\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Response Status Code Distribution",
+                  "info": "<span>HTTP status codes returned by Gorouter</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_rtr_status\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3torqxi5lt\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "5xx Errors Over Time",
+                  "info": "<span>Server-side error rate from Gorouter</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}, {\"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3torqxi5lt\", \"operator\": \"MATCH\", \"value\": \"5\\\\d{2}\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Slowest Routes (by response time)",
+                  "info": "<span>Top routes by count with response_time filter</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_rtr_host\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3in5zxi000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Router Errors by Type",
+                  "info": "<span>x_cf_routererror breakdown (no_endpoints, endpoint_failure, etc.)</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"x_cf_routererror:\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_rtr_error\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3fojzg64q0\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Requests by Application",
+                  "info": "<span>Request volume per application name</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"app_name=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_app_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Requests by HTTP Method",
+                  "info": "<span>HTTP method distribution (GET, POST, PUT, DELETE, etc.)</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"response_time:\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_rtr_method\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7oj2hex3nmv2gq33e\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Diego",
+          "constraints": [],
+          "rows": [
+            {
+              "widgets": [
+                {
+                  "name": "Diego Events Over Time",
+                  "info": "<span>Event volume from Diego components (rep, bbs, auctioneer, locket)</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"origin=\\\"(rep|bbs|auctioneer|locket|route_emitter)\\\"\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Diego Errors and Fatal Events",
+                  "info": "<span>Error and fatal-level Diego events</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"origin=\\\"(rep|bbs|auctioneer|locket|route_emitter)\\\"\"}, {\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"ERROR|FATAL|error|fatal\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Events by Origin",
+                  "info": "<span>Distribution across Diego sub-components by origin</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"origin=\\\"(rep|bbs|auctioneer|locket|route_emitter)\\\"\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_origin\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7n5zgsz3jny000000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "App Instance Crash Events",
+                  "info": "<span>Container crash and exit events</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"crashed|CRASHED|exit_status\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Diego Events by Deployment",
+                  "info": "<span>Event distribution across BOSH deployments</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"origin=\\\"(rep|bbs|auctioneer|locket|route_emitter)\\\"\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"deployment=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_bosh_dep\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mjxxg2c7mrsxa000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cloud Controller",
+          "constraints": [],
+          "rows": [
+            {
+              "widgets": [
+                {
+                  "name": "API Events Over Time",
+                  "info": "<span>Cloud Controller event volume</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "API Events by Source Type",
+                  "info": "<span>Distribution by source_type (API, worker, clock, etc.)</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_source_type\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onxxk4tdmvpxi6lqmu000000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "CC Events by App Name",
+                  "info": "<span>Cloud Controller events grouped by application</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"app_name=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_app_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "CC Events by Space",
+                  "info": "<span>Cloud Controller events grouped by space</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"space_name=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_space_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onygcy3fl5xgc3lf\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "CC Events by Organization",
+                  "info": "<span>Cloud Controller events grouped by org</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"organization_name=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_org_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7n5zgox3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "CC Error Events",
+                  "info": "<span>Cloud Controller error events</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"origin=\\\"cloud_controller\\\"\"}, {\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"ERROR|error|failed|Failed\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "UAA Security",
+          "constraints": [],
+          "rows": [
+            {
+              "widgets": [
+                {
+                  "name": "UAA Events Over Time",
+                  "info": "<span>Authentication and authorization event volume</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"uaa.sys\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "UAA Events by Source Type",
+                  "info": "<span>Distribution of UAA source types</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"uaa.sys\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_source_type\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onxxk4tdmvpxi6lqmu000000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Authentication Failures",
+                  "info": "<span>Failed authentication attempts</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"AuthenticationFailure|authentication_failure\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Authentication Successes",
+                  "info": "<span>Successful authentication events</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"AuthenticationSuccess|authentication_success\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "UAA Events by App",
+                  "info": "<span>UAA events grouped by application</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"uaa.sys\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"app_name=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_app_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "UAA Events by Organization",
+                  "info": "<span>UAA events grouped by org</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"uaa.sys\"}, {\"internalName\": \"text\", \"operator\": \"CONTAINS\", \"value\": \"organization_name=\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_org_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7n5zgox3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Application Logs",
+          "constraints": [],
+          "rows": [
+            {
+              "widgets": [
+                {
+                  "name": "App Log Volume Over Time",
+                  "info": "<span>Application log event volume</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"\\\\[APP/\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "App Logs by Source Type",
+                  "info": "<span>Distribution across APP, RTR, STG, CELL, SSH, LGR</span>",
+                  "gridWidth": "1",
+                  "chartType": "pie",
+                  "chartOptions": "{\"logaxis\": false, \"pielabelstyle\": \"legend\", \"piepercentage\": false, \"piestyle\": \"donut\"}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"\\\\[(APP|RTR|STG|CELL|SSH|LGR)/\"}], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_app_source\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3tn52xey3f\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "App Crash Events",
+                  "info": "<span>Application crash events from CELL logs</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"crashed|CRASHED|exit_status\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Staging Events",
+                  "info": "<span>Application staging/build events</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"\\\\[STG/\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Logs by Organization",
+                  "info": "<span>Log volume grouped by Cloud Foundry org</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_org_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7n5zgox3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Logs by Space",
+                  "info": "<span>Log volume grouped by Cloud Foundry space</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_space_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7onygcy3fl5xgc3lf\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            },
+            {
+              "widgets": [
+                {
+                  "name": "Logs by Application Name",
+                  "info": "<span>Log volume grouped by application name</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": false, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [], \"supplementalConstraints\": [], \"groupByFields\": [{\"displayName\": \"tpcf_app_name\", \"internalName\": \"ibadenk7mnxw2ltwnv3wc4tffz2gc3t2ouxha3dbortg64tnoryggzs7mfyhax3omfwwk000\", \"displayNamespace\": \"VMware Tanzu Platform\", \"numericGroupByType\": \"EACH_VALUE\", \"numericGroupByValue\": null}], \"extractedFields\": []}",
+                  "messageQuery": ""
+                },
+                {
+                  "name": "Dropped Log Messages",
+                  "info": "<span>Loggregator dropped message warnings</span>",
+                  "gridWidth": "1",
+                  "chartType": null,
+                  "chartOptions": "{\"logaxis\": false, \"legend\": true, \"stacking\": \"normal\", \"spline\": false}",
+                  "widgetType": "chart",
+                  "chartQuery": "{\"query\": \"\", \"startTimeMillis\": 1774309345724, \"endTimeMillis\": 1774395745724, \"piqlFunctionGroups\": [{\"functions\": [{\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}], \"field\": null}], \"dateFilterPreset\": \"CUSTOM\", \"shouldGroupByTime\": true, \"eventSortOrder\": \"DESC\", \"summarySortOrder\": \"DESC\", \"compareQueryOrderBy\": \"TREND\", \"compareQuerySortOrder\": \"DESC\", \"compareQueryOptions\": null, \"messageViewType\": \"EVENTS\", \"constraintToggle\": \"ALL\", \"piqlFunction\": {\"label\": \"Count\", \"value\": \"COUNT\", \"requiresField\": false, \"numericOnly\": false}, \"piqlFunctionField\": null, \"fieldConstraints\": [{\"internalName\": \"text\", \"operator\": \"MATCH\", \"value\": \"Dropped.*log messages|LGR.*ERR\"}], \"supplementalConstraints\": [], \"groupByFields\": [], \"extractedFields\": []}",
+                  "messageQuery": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "header": ""
+    }
+  ],
+  "agentClasses": [],
+  "aliasFields": [],
+  "aliasRules": []
+}
